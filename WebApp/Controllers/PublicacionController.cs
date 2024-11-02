@@ -9,16 +9,25 @@ namespace WebApp.Controllers
         Sistema _sistema = Sistema.Instancia;
         public IActionResult Index()
         {
-            string correo = HttpContext.Session.GetString("mail");
-            if (_sistema.BuscarAdministrador(correo) != null)
+            string msj = string.Empty;
+            try
             {
-                return RedirectToAction("Administrador", "Publicacion");
+                string correo = HttpContext.Session.GetString("mail");
+                if (_sistema.BuscarAdministrador(correo) != null)
+                {
+                    return RedirectToAction("Administrador", "Publicacion");
+                }
+                else if (_sistema.BuscarCliente(correo) != null)
+                {
+                    return RedirectToAction("Cliente", "Publicacion");
+                }
+
             }
-            else if (_sistema.BuscarCliente(correo) != null)
+            catch (Exception e)
             {
-                return RedirectToAction("Cliente", "Publicacion");
+                msj = e.Message;
+                return RedirectToAction("index", "index", new { msj });
             }
-            string msj = "WTF...";
             return RedirectToAction("index", "index", new { msj });
         }
 

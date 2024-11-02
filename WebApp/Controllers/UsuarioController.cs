@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebApp.Controllers
 {
 
-    public class Usuario : Controller
+    public class UsuarioController : Controller
     {
         Sistema _sistema = Sistema.Instancia;
 

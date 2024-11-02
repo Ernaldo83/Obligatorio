@@ -5,7 +5,7 @@ using System.Web;
 
 namespace WebApp.Controllers
 {
-    public class index : Controller
+    public class indexController : Controller
     {
         
         static Sistema _sistema= Sistema.Instancia;
