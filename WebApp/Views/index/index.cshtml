@@ -1,0 +1,15 @@
+﻿
+
+<form method="post" action="Usuario/Login" class="formularioLogin col-md-6 row justify-content-center">
+    <h2>Ingreso de usuario</h2>
+    <label>Ingrese Correo</label><br>
+    <input type="text" required name="correo">
+    <label>Ingrese Contraseña</label>
+    <input type="text" required name="pass">
+    <input type="submit" class="my-2 btn-focus col-5" value="INGRESAR">
+    <label class="col-8">No estas registrado?</label><a class="col-4" asp-area="" asp-controller="Usuario" asp-action="Registro">Registrarse</a>
+</form>
+@if (!String.IsNullOrEmpty(ViewBag.msj))
+{
+    <p class="alert-info col-md-7 text-center">@ViewBag.msj</p>
+}

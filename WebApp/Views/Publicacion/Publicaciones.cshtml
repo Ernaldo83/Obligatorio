@@ -1,0 +1,66 @@
+﻿@using Dominio.Entidades
+@using Dominio
+
+<script src="~/js/site.js" asp-append-version="true"></script>
+@if (ViewBag.usuario is Cliente)//dashboard CLIENTE
+{
+    <script>
+        let nav = document.getElementById("navegador");
+        crearNodo(nav, "li", ["innerHTML", "Bienvenido " + "@ViewBag.usuario.Nombre " + "@ViewBag.usuario.Apellido", "class", "col-md-4"])
+        crearNodo(nav, "li", ["innerHTML", "$" + "@ViewBag.usuario.SaldoBilletera", "class", "col-md-2"])
+        crearNodo(nav, "a", ["innerHTML", "Cargar Saldo", "class", "btn-focus col-md-2", "href", "/Usuario/Logout"]);
+        crearNodo(nav, "a", ["innerHTML", "SALIR", "class", "btn-focus col-md-2", "href", "/Usuario/Logout"]);
+    </script>
+}
+else if (ViewBag.usuario is Administrador)//dashboard ADMINISTRADOR
+{
+    <script>
+        let nav = document.getElementById("navegador");
+        crearNodo(nav, "li", ["innerHTML", "Bienvenido " + "@ViewBag.usuario.Nombre " + "@ViewBag.usuario.Apellido", "class", "col-md-4"])
+        crearNodo(nav, "li", ["innerHTML", "ADMINISTRADOR", "class", "col-md-2"])
+        crearNodo(nav, "a", ["innerHTML", "SALIR", "class", "btn-focus col-md-2", "href", "/Usuario/Logout"]);
+    </script>
+}
+<table class="table table-striped ">
+    <theah>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Precio</th>
+            <th scope="col"></th>
+        </tr>
+    </theah>
+    @foreach (Publicacion item in ViewBag.Publicaciones)
+    {
+        <tr scope="row">
+            <td>@item.Nombre</td>
+            @if (item is Venta)
+            {
+                <td>VENTA</td>
+            }
+            else if(item is Subasta)
+            {
+                <td>SUBASTA</td>
+            }
+            <td>@item.EstadoPublicacion</td>
+            <td>@item.ObtenerPrecio()</td>
+            @if (ViewBag.usuario is Administrador)
+            {
+                <td><a class="btn-focus btn-lista" href="/publicacion/FinalizarSubasta?@item.Id">FINALIZAR</a></td>
+            }
+            else if (ViewBag.usuario is Cliente)
+            {
+                if(item is Venta)
+                {
+                    <td><a class="btn-focus btn-lista" href="/publicacion/ComprarVenta?@item.Id">COMPRAR</a></td>
+                }
+                else if (item is Subasta)
+                {
+                    <td><a class="btn-focus btn-lista" href="/publicacion/OfertarSubasta?@item.Id">OFERTAR</a></td>
+                }
+            }
+        </tr>
+    }
+</table>
+

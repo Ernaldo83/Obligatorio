@@ -1,0 +1,76 @@
+* {
+    font-family: "Roboto", sans-serif;
+}
+:root {
+    --azul: #14213d;
+    --amarillo: #fca311;
+    --rojo: #780000;
+    --grisClaro: #e5e5e5;
+}
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+header{
+    background-color: var(--azul);
+}
+#logo{
+    max-width: 250px;
+}
+.btn-focus{
+    text-decoration: none;
+    text-align: center;
+    align-content:center;
+    background-color: var(--azul);
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+    list-style: none;
+}
+li {
+    padding: 0;
+    text-decoration: none;
+    text-align: center;
+    align-content: center;
+    color: white;
+    font-weight: bold;
+    list-style: none;
+}
+.btn-lista{
+    padding: 10px 5px;
+}
+
+.formularioLogin h2{
+    background-color: var(--azul);
+    color: white;
+    text-align: center;
+}
+.formularioLogin {
+    margin-top: 2%;
+}
+.btn-focus:hover{
+    cursor: pointer;
+    color: white;
+    text-shadow: 0 0 10px white;
+}
+.btn-focus:active {
+    color: var(--amarillo);
+}
