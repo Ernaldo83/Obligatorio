@@ -7,31 +7,32 @@ namespace WebApp.Controllers
     public class PublicacionController : Controller
     {
         Sistema _sistema = Sistema.Instancia;
-        public IActionResult Index(string correo)
+        public IActionResult Index()
         {
-            if(_sistema.BuscarAdministrador(correo)!= null)
+            string correo = HttpContext.Session.GetString("mail");
+            if (_sistema.BuscarAdministrador(correo) != null)
             {
-                return RedirectToAction("Administrador", "Publicacion", new {correo});
+                return RedirectToAction("Administrador", "Publicacion");
             }
             else if (_sistema.BuscarCliente(correo) != null)
             {
-                return RedirectToAction("Cliente", "Publicacion", new { correo });
+                return RedirectToAction("Cliente", "Publicacion");
             }
             string msj = "WTF...";
-            return RedirectToAction("index", "index", new {msj});
+            return RedirectToAction("index", "index", new { msj });
         }
 
-        public IActionResult Cliente(string correo)
+        public IActionResult Cliente()
         {
-            Cliente usuario = _sistema.BuscarCliente(correo);
-            List <Publicacion> publicaciones = _sistema.ListaPublicaciones("todos", Estado.TODOS);
+            Cliente usuario = _sistema.BuscarCliente(HttpContext.Session.GetString("mail"));
+            List<Publicacion> publicaciones = _sistema.ListaPublicaciones("todos", Estado.TODOS);
             ViewBag.usuario = usuario;
             ViewBag.Publicaciones = publicaciones;
             return View("Publicaciones");
         }
-        public IActionResult Administrador(string correo)
+        public IActionResult Administrador()
         {
-            Administrador usuario = _sistema.BuscarAdministrador(correo);
+            Administrador usuario = _sistema.BuscarAdministrador(HttpContext.Session.GetString("mail"));
             List<Publicacion> publicaciones = _sistema.ListaPublicaciones("subasta", Estado.TODOS);
             ViewBag.usuario = usuario;
             ViewBag.Publicaciones = publicaciones;

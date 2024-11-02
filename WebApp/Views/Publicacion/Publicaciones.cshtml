@@ -8,7 +8,7 @@
         let nav = document.getElementById("navegador");
         crearNodo(nav, "li", ["innerHTML", "Bienvenido " + "@ViewBag.usuario.Nombre " + "@ViewBag.usuario.Apellido", "class", "col-md-4"])
         crearNodo(nav, "li", ["innerHTML", "$" + "@ViewBag.usuario.SaldoBilletera", "class", "col-md-2"])
-        crearNodo(nav, "a", ["innerHTML", "Cargar Saldo", "class", "btn-focus col-md-2", "href", "/Usuario/CargarSaldo?@ViewBag.usuario.Email"]);
+        crearNodo(nav, "a", ["innerHTML", "Cargar Saldo", "class", "btn-focus col-md-2", "href", "/Usuario/Saldo"]);
         crearNodo(nav, "a", ["innerHTML", "SALIR", "class", "btn-focus col-md-2", "href", "/Usuario/Logout"]);
     </script>
 }
