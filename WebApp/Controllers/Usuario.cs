@@ -5,9 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Controllers
 {
+
     public class Usuario : Controller
     {
         Sistema _sistema = Sistema.Instancia;
+
 
         public IActionResult Index()
         {
@@ -22,8 +24,8 @@ namespace WebApp.Controllers
             {
                 if (_sistema.Login(correo, pass) != null)
                 {
-                    //HttpContext.Session.SetString("mail", correo);
-                    //HttpContext.Session.SetString("pass", pass);
+                    HttpContext.Session.SetString("mail", correo);
+                    HttpContext.Session.SetString("pass", pass);
                     return RedirectToAction("index", "Publicacion", new { correo });
                 }
             }
@@ -48,8 +50,8 @@ namespace WebApp.Controllers
         }
         public IActionResult Logout()
         {
-            //HttpContext.Session.Remove("correo");
-            //HttpContext.Session.Remove("pass");
+            HttpContext.Session.Remove("correo");
+            HttpContext.Session.Remove("pass");
             return RedirectToAction("index", "index");
         }
     }
