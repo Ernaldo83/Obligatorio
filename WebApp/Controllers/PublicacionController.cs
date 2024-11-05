@@ -47,10 +47,13 @@ namespace WebApp.Controllers
             ViewBag.Publicaciones = publicaciones;
             return View("Publicaciones");
         }
+        
         public IActionResult OfertarSubasta(int Id)
         {
             Cliente usuario = _sistema.BuscarCliente(HttpContext.Session.GetString("mail"));
             Publicacion subasta = _sistema.BuscarPublicacionSubasta(Id);
+            ViewBag.usuario = usuario;
+            ViewBag.subasta = subasta;
             return View();
         }
         [HttpGet]
