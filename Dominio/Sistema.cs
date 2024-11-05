@@ -507,6 +507,12 @@ namespace Dominio
             nuevoUsuario.Validar();
             if (BuscarAdministrador(nuevoUsuario.Email) != null) throw new Exception("El usuario ya existe");
             _usuarios.Add(nuevoUsuario);
-        }      
+        }
+
+        public void FinalizarSubasta(Subasta subasta)
+        {
+            if (subasta == null) throw new Exception("Sin el objeto subtasta para finalizar");
+            subasta.Finalizar();
+        }
     }
 }

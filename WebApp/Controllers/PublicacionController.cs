@@ -7,9 +7,9 @@ namespace WebApp.Controllers
     public class PublicacionController : Controller
     {
         Sistema _sistema = Sistema.Instancia;
-        public IActionResult Index()
+        public IActionResult Index(string msj)
         {
-            string msj = string.Empty;
+            ViewBag.msj = msj;           
             try
             {
                 string correo = HttpContext.Session.GetString("mail");
@@ -51,7 +51,7 @@ namespace WebApp.Controllers
         public IActionResult OfertarSubasta(int Id)
         {
             Cliente usuario = _sistema.BuscarCliente(HttpContext.Session.GetString("mail"));
-            Publicacion subasta = _sistema.BuscarPublicacionSubasta(Id);
+            Subasta subasta = _sistema.BuscarPublicacionSubasta(Id);
             ViewBag.usuario = usuario;
             ViewBag.subasta = subasta;
             return View();
@@ -67,15 +67,14 @@ namespace WebApp.Controllers
         {
             try
             {
-
+                _sistema.FinalizarSubasta(subasta);
             }
             catch (Exception e)
             {
                 ViewBag.msj = e.Message;
                 return View();
-            }
-            ViewBag.msj = "Subasta finalizada con éxito";
-            return RedirectToAction("Index");
+            }          
+            return RedirectToAction("Index", new { msj = "Subasta finalizada con éxito" });
         }
     }
 }

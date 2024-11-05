@@ -22,6 +22,10 @@ namespace Dominio.Entidades
             decimal preciofinal = base.ObtenerPrecio();
             return preciofinal;
         }
+        public override void Finalizar()
+        {
+            throw new NotImplementedException();
+        }
         public override void Validar()
         {
             base.Validar();

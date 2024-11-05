@@ -40,5 +40,11 @@ namespace Dominio.Entidades
         {
             base.Validar();
         }
+
+        public override void Finalizar()
+        {
+           EstadoPublicacion = Estado.CERRADA;
+
+        }
     }
 }
