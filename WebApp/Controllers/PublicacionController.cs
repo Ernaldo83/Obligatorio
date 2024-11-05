@@ -80,5 +80,12 @@ namespace WebApp.Controllers
             }          
             return RedirectToAction("Administrador", new { msj = "Subasta finalizada con éxito" });
         }
-    }
+		[HttpPost]
+		public IActionResult ValidarOfertaSubasta(int oferta)
+		{
+
+			return View();
+		}
+	}
+}
 }
