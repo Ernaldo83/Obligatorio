@@ -75,7 +75,7 @@ namespace WebApp.Controllers
                 return View();
             }
             ViewBag.msj = "Subasta finalizada con éxito";
-            return View("Index");
+            return RedirectToAction("Index");
         }
     }
 }
