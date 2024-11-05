@@ -7,9 +7,10 @@ namespace WebApp.Controllers
     public class PublicacionController : Controller
     {
         Sistema _sistema = Sistema.Instancia;
-        public IActionResult Index(string msj)
+        public IActionResult Index()
         {
-            ViewBag.msj = msj;           
+            string msj = string.Empty;  
+               
             try
             {
                 string correo = HttpContext.Session.GetString("mail");
@@ -39,8 +40,9 @@ namespace WebApp.Controllers
             ViewBag.Publicaciones = publicaciones;
             return View("Publicaciones");
         }
-        public IActionResult Administrador()
+        public IActionResult Administrador(string msj)
         {
+            ViewBag.msj = msj;
             Administrador usuario = _sistema.BuscarAdministrador(HttpContext.Session.GetString("mail"));
             List<Publicacion> publicaciones = _sistema.ListaPublicaciones("subasta", Estado.TODOS);
             ViewBag.usuario = usuario;
@@ -74,7 +76,7 @@ namespace WebApp.Controllers
                 ViewBag.msj = e.Message;
                 return View();
             }          
-            return RedirectToAction("Index", new { msj = "Subasta finalizada con éxito" });
+            return RedirectToAction("Administrador", new { msj = "Subasta finalizada con éxito" });
         }
     }
 }

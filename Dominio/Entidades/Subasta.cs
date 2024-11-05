@@ -33,6 +33,10 @@ namespace Dominio.Entidades
         public void CargarOferta(Oferta oferta)
         {
             if (oferta == null) throw new Exception("Parametro incorrecto para crear una oferta");
+            if (_ofertas.Count > 0)
+            {
+                if (oferta.Precio <= _ofertas[_ofertas.Count - 1].Precio) throw new Exception("El valor debe ser mayor que el precio actual");
+            }
             oferta.Validar();
             _ofertas.Add(oferta);
         }
