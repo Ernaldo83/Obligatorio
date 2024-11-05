@@ -31,6 +31,12 @@ namespace Dominio.Entidades
             FechaPublicacion = fechaPublicacion;
         }
         public Publicacion() { }
+
+        public List<Articulo> Articulos()
+        { 
+            return _articulos;
+        }
+        
         public virtual decimal ObtenerPrecio()
         {
             decimal preciofinal = 0;
