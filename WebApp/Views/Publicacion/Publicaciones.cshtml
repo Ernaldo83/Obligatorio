@@ -53,11 +53,11 @@ else if (ViewBag.usuario is Administrador)//dashboard ADMINISTRADOR
             {
                 if(item is Venta)
                 {
-                    <td><a class="btn-focus btn-lista" href="/publicacion/ComprarVenta?@item.Id">COMPRAR</a></td>
+                    <td><a class="btn-focus btn-lista" href="/publicacion/ComprarVenta/@item.Id">COMPRAR</a></td>
                 }
                 else if (item is Subasta)
                 {
-                    <td><a class="btn-focus btn-lista" href="/publicacion/OfertarSubasta?@item.Id">OFERTAR</a></td>
+                    <td><a class="btn-focus btn-lista" href="/publicacion/OfertarSubasta/@item.Id">OFERTAR</a></td>
                 }
             }
         </tr>
