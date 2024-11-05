@@ -16,31 +16,6 @@
         {
             <tr scope="row">
                 <td>@item.Nombre</td>
-                @if (item is Venta)
-                {
-                    <td>VENTA</td>
-                }
-                else if (item is Subasta)
-                {
-                    <td>SUBASTA</td>
-                }
-                <td>@item.EstadoPublicacion</td>
-                <td>@item.ObtenerPrecio()</td>
-                @if (ViewBag.usuario is Administrador)
-                {
-                    <td><a class="btn-focus btn-lista" href="/publicacion/FinalizarSubasta/@item.Id">FINALIZAR</a></td>
-                }
-                else if (ViewBag.usuario is Cliente)
-                {
-                    if (item is Venta)
-                    {
-                        <td><a class="btn-focus btn-lista" href="/publicacion/ComprarVenta/@item.Id">COMPRAR</a></td>
-                    }
-                    else if (item is Subasta)
-                    {
-                        <td><a class="btn-focus btn-lista" href="/publicacion/OfertarSubasta/@item.Id">OFERTAR</a></td>
-                    }
-                }
             </tr>
         }
     </table>
