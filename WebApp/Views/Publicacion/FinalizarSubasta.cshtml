@@ -1,14 +1,12 @@
 ﻿@using Dominio.Entidades
 
-
-<form method="post" action="/Usuario/CargarSaldo" class="formularioLogin col-6 col-xl-4  row justify-content-center">
-    <h2>Finalizar Publicacion Nro: @ViewBag.Subasta.Id</h2>
-    <label>@ViewBag.usuario.Nombre @ViewBag.Subasta.Nombre</label><br>
-    <label>Saldo : $@ViewBag.Subasta.FechaPublicacion</label><br>
-    <label>Ingrese Saldo a Depositar</label><br>
-    <input type="number" required name="Monto" min="0" value="0">
-    <input type="submit" class="my-2 btn-focus col-5" value="CARGAR">
-    <a class="my-2 btn-focus col-5" asp-area="" asp-controller="Publicacion" asp-action="Index" id="salir">Volver</a>
+<form method="post" class="formularioLogin col-6 col-xl-4  row justify-content-center">
+    <h3>Finalizar Publicacion Nro: @ViewBag.Subasta.Id</h3>
+    <label>Nombre: @ViewBag.Subasta.Nombre</label><br>
+    <label>Fecha Publicación: $@ViewBag.Subasta.EstadoPublicacion</label><br>
+    <label>Desea finalizar publicacion??</label><br>   
+    <input type="submit" class="my-2 btn-focus col-5" value="CONFIRMAR">
+    <a class="my-2 btn-focus col-5" asp-area="" asp-controller="Publicacion" asp-action="Index" id="salir">Volver</a> 
     @if (!String.IsNullOrEmpty(ViewBag.msj))
     {
         <p class="alert-info text-center">@ViewBag.msj</p>
