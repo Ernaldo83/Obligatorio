@@ -21,6 +21,10 @@ else if (ViewBag.usuario is Administrador)//dashboard ADMINISTRADOR
         crearNodo(nav, "a", ["innerHTML", "SALIR", "class", "btn-focus col-md-2", "href", "/Usuario/Logout"]);
     </script>
 }
+@if (!String.IsNullOrEmpty(ViewBag.msj))
+{
+    <p class="alert alert-success text-center">@ViewBag.msj</p>
+}
 <table class="table table-striped ">
     <theah>
         <tr>
