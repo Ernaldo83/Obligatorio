@@ -61,15 +61,17 @@ namespace WebApp.Controllers
         [HttpGet]
         public IActionResult FinalizarSubasta(int Id)
         {
-            ViewBag.Subasta = _sistema.BuscarPublicacionSubasta(Id);
+            Subasta subasta = _sistema.BuscarPublicacionSubasta(Id);
+            ViewBag.Subasta = subasta;
             return View("FinalizarSubasta");
         }
         [HttpPost]
         public IActionResult FinalizarSubasta(Subasta subasta)
-        {
+        {            
             try
             {
-                _sistema.FinalizarSubasta(subasta);
+                Subasta _subasta = _sistema.BuscarPublicacionSubasta(subasta.Id);
+                _sistema.FinalizarSubasta(_subasta);
             }
             catch (Exception e)
             {

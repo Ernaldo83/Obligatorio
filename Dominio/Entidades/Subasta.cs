@@ -47,8 +47,8 @@ namespace Dominio.Entidades
 
         public override void Finalizar()
         {
-           EstadoPublicacion = Estado.CERRADA;
-
+          EstadoPublicacion = Estado.CERRADA;
+            
         }
     }
 }
