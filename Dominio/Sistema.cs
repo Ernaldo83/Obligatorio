@@ -259,10 +259,10 @@ namespace Dominio
         {
             Subasta unaPublicacion = BuscarPublicacionSubasta(10);
             unaPublicacion.CargarOferta(new Oferta(BuscarCliente("ernaldo.rodriguez.dev@gmail.com"), 1334));
-            unaPublicacion.CargarOferta(new Oferta(BuscarCliente("dgeymonat85@gmail.com"), 256));
+            unaPublicacion.CargarOferta(new Oferta(BuscarCliente("dgeymonat85@gmail.com"), 1456));
             unaPublicacion = BuscarPublicacionSubasta(19);
             unaPublicacion.CargarOferta(new Oferta(BuscarCliente("ernaldo.rodriguez.dev@gmail.com"), 1334));
-            unaPublicacion.CargarOferta(new Oferta(BuscarCliente("dgeymonat85@gmail.com"), 256));
+            unaPublicacion.CargarOferta(new Oferta(BuscarCliente("dgeymonat85@gmail.com"), 1456));
 
             //Subasta unaPublicacion = BuscarPublicacionSubasta(1);
             //unaPublicacion.CargarOferta(new Oferta(BuscarCliente("ernaldo.rodriguez.dev@gmail.com"), 1334)); --El id ingresado no es una subasta.
