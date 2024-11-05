@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Dominio;
-using Dominio.Entidades;
-using System.Web;
+
 
 namespace WebApp.Controllers
 {

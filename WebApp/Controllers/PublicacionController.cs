@@ -53,5 +53,26 @@ namespace WebApp.Controllers
             Publicacion subasta = _sistema.BuscarPublicacionSubasta(Id);
             return View();
         }
+        [HttpGet]
+        public IActionResult FinalizarSubasta(int Id)
+        {
+            ViewBag.Subasta = _sistema.BuscarPublicacionSubasta(Id);
+            return View("FinalizarSubasta");
+        }
+        [HttpPost]
+        public IActionResult FinalizarSubasta(Subasta subasta)
+        {
+            try
+            {
+
+            }
+            catch (Exception e)
+            {
+                ViewBag.msj = e.Message;
+                return View();
+            }
+            ViewBag.msj = "Subasta finalizada con éxito";
+            return View("Index");
+        }
     }
 }

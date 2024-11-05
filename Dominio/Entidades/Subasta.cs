@@ -5,6 +5,10 @@ namespace Dominio.Entidades
     public class Subasta : Publicacion,IValidable
     {
         private List<Oferta> _ofertas = new List<Oferta>();
+        public Subasta() 
+        { 
+        
+        }
         public Subasta(string nombre,
                        Estado estado,
                        Administrador usuario,

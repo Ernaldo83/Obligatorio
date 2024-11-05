@@ -47,7 +47,7 @@ else if (ViewBag.usuario is Administrador)//dashboard ADMINISTRADOR
             <td>@item.ObtenerPrecio()</td>
             @if (ViewBag.usuario is Administrador)
             {
-                <td><a class="btn-focus btn-lista" href="/publicacion/FinalizarSubasta?@item.Id">FINALIZAR</a></td>
+                <td><a class="btn-focus btn-lista" href="/publicacion/FinalizarSubasta/@item.Id">FINALIZAR</a></td>
             }
             else if (ViewBag.usuario is Cliente)
             {
