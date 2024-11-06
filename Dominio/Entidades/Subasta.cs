@@ -2,19 +2,19 @@
 
 namespace Dominio.Entidades
 {
-    public class Subasta : Publicacion,IValidable
+    public class Subasta : Publicacion, IValidable
     {
         private List<Oferta> _ofertas = new List<Oferta>();
-        public Subasta() 
-        { 
-        
+        public Subasta()
+        {
+
         }
         public Subasta(string nombre,
                        Estado estado,
                        Administrador usuario,
                        List<Articulo> articulos,
                        DateTime fechaPublicacion
-                     ) : base(nombre, estado, usuario, articulos,fechaPublicacion)
+                     ) : base(nombre, estado, usuario, articulos, fechaPublicacion)
         {
         }
 
@@ -47,8 +47,10 @@ namespace Dominio.Entidades
 
         public override void Finalizar()
         {
-          EstadoPublicacion = Estado.CERRADA;
-            
+            if (_ofertas.Count == 0) throw new Exception("No se puede finalizar subasta sin ofertas");
+            EstadoPublicacion = Estado.CERRADA;
+            FechaFinalizado = DateTime.Now;          
+            UsuarioComprador = _ofertas[_ofertas.Count - 1].Usuario; ;
         }
     }
 }

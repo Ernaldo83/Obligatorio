@@ -9,8 +9,8 @@ namespace WebApp.Controllers
         Sistema _sistema = Sistema.Instancia;
         public IActionResult Index()
         {
-            string msj = string.Empty;  
-               
+            string msj = string.Empty;
+
             try
             {
                 string correo = HttpContext.Session.GetString("mail");
@@ -49,7 +49,7 @@ namespace WebApp.Controllers
             ViewBag.Publicaciones = publicaciones;
             return View("Publicaciones");
         }
-        
+
         public IActionResult OfertarSubasta(int Id)
         {
             Cliente usuario = _sistema.BuscarCliente(HttpContext.Session.GetString("mail"));
@@ -59,15 +59,16 @@ namespace WebApp.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult FinalizarSubasta(int Id)
+        public IActionResult FinalizarSubasta(int Id, string msj)
         {
             Subasta subasta = _sistema.BuscarPublicacionSubasta(Id);
             ViewBag.Subasta = subasta;
+            ViewBag.msj = msj;
             return View("FinalizarSubasta");
         }
         [HttpPost]
         public IActionResult FinalizarSubasta(Subasta subasta)
-        {            
+        {
             try
             {
                 Subasta _subasta = _sistema.BuscarPublicacionSubasta(subasta.Id);
@@ -75,17 +76,16 @@ namespace WebApp.Controllers
             }
             catch (Exception e)
             {
-                ViewBag.msj = e.Message;
-                return View();
-            }          
+                return RedirectToAction("FinalizarSubasta", new {msj = e.Message });
+            }
             return RedirectToAction("Administrador", new { msj = "Subasta finalizada con éxito" });
         }
-		[HttpPost]
-		public IActionResult ValidarOfertaSubasta(int oferta)
-		{
+        [HttpPost]
+        public IActionResult ValidarOfertaSubasta(int oferta)
+        {
 
-			return View();
-		}
-	}
+            return View();
+        }
+    }
 }
 
