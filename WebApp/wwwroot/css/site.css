@@ -74,3 +74,6 @@ li {
 .btn-focus:active {
     color: var(--amarillo);
 }
+·inputOferta{
+    margin-bottom: 5px;
+}
