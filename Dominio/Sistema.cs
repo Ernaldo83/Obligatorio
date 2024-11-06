@@ -514,5 +514,15 @@ namespace Dominio
             if (subasta == null) throw new Exception("Sin el objeto subtasta para finalizar");
             subasta.Finalizar();
         }
-    }
+
+		public Venta BuscarVenta(int id)
+		{
+            
+			foreach(Publicacion item in _publicaciones)
+            {
+                if (item is Venta && item.Id == id) return (Venta) item;
+            }
+            throw new Exception("No existe publicaciòn.");
+		}
+	}
 }
