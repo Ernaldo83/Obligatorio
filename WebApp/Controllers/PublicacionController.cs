@@ -96,6 +96,7 @@ namespace WebApp.Controllers
 			}
 			catch (Exception e)
 			{
+                ViewBag.msj = e.Message;
 				return View("OfertarSubasta");
 			}
 		}
