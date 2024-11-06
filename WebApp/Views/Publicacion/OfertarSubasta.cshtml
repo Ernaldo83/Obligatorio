@@ -2,7 +2,11 @@
 
 
 
-<form method="post" action="/publicacion/ValidarOfertaSubasta" class="formularioLogin col-6 col-xl-4  row justify-content-center">
+@if (!String.IsNullOrEmpty(ViewBag.msj))
+{
+	<p class="alert-info text-center">@ViewBag.msj</p>
+}
+<form method="post" action="/publicacion/ValidarOfertaSubasta/@ViewBag.subasta.Id" class="formularioLogin col-6 col-xl-4  row justify-content-evenly">
 	<h2>Ofertar Subasta</h2>
 	<h3 class="text-center">@ViewBag.subasta.Nombre</h3>
 	<table class="table table-striped ">
@@ -41,11 +45,7 @@
 	}
 	<h4 class="text-center">PRECIO TOTAL $@ViewBag.subasta.ObtenerPrecio()</h4>
 	<label class="col-5">Ingrese Oferta</label>
-	<input class="col-6 text-end" type="number" min="@ViewBag.subasta.ObtenerPrecio()" placeholder="Oferta mìn. $@ViewBag.subasta.ObtenerPrecio()" name="oferta">
+	<input class="col-6 text-end" type="number" min="@ViewBag.subasta.ObtenerPrecio()" placeholder="Oferta mìn. $@ViewBag.subasta.ObtenerPrecio()" name="oferta" required>
 	<input type="submit" value="OFERTAR" class="col-5 btn-focus">
-	<a class="my-2 btn-focus col-5" asp-area="" asp-controller="Publicacion" asp-action="Index" id="salir">Volver</a>
-	@if (!String.IsNullOrEmpty(ViewBag.msj))
-	{
-		<p class="alert-info text-center">@ViewBag.msj</p>
-	}
+	<a class="btn-focus col-5" asp-area="" asp-controller="Publicacion" asp-action="Index" id="salir">Volver</a>
 </form>
