@@ -26,7 +26,7 @@
 	</table>
 	@if (ViewBag.subasta.MostrarOfertas().Count > 0)
 	{
-		<h6>Lista de Ofertas</h6>
+		<h6 class="text-center">Lista de Ofertas</h6>
 		<table class="table table-striped ">
 			<theah>
 				<tr>
@@ -43,9 +43,10 @@
 			}
 		</table>
 	}
-	<h4 class="text-center">PRECIO TOTAL $@ViewBag.subasta.ObtenerPrecio()</h4>
+	<h2 class="text-center h4">Precio Total $@ViewBag.subasta.ObtenerPrecio()</h2>
 	<label class="col-5">Ingrese Oferta</label>
-	<input class="col-6 text-end" type="number" placeholder="Oferta mìn. $@ViewBag.subasta.ObtenerPrecio()" name="oferta">
+	<input class="col-6 text-end" type="number" placeholder="Oferta mìn. $@ViewBag.subasta.ObtenerPrecio()" name="oferta" id="inputOferta">
+	
 	<input type="submit" value="OFERTAR" class="col-5 btn-focus">
 	<a class="btn-focus col-5" asp-area="" asp-controller="Publicacion" asp-action="Index" id="salir">Volver</a>
 </form>

@@ -28,6 +28,7 @@ namespace Dominio.Entidades
         {
             if (Precio < 0) throw new Exception("El precio no puede ser menor que cero");
             if (Usuario == null) throw new Exception("El mail ingresado no corresponde a un cliente válido.");
+            if (Precio > Usuario.SaldoBilletera) throw new Exception("Saldo insuficiente");
         }
     }
 }
