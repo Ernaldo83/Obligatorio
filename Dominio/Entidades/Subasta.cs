@@ -58,6 +58,7 @@ namespace Dominio.Entidades
                     UsuarioComprador = unCliente;
                     EstadoPublicacion = Estado.CERRADA;
                     FechaFinalizado = DateTime.Now;
+                    unCliente.SaldoBilletera -= ObtenerPrecio();
                     _clienteValido=true;
                     break;
                 }
