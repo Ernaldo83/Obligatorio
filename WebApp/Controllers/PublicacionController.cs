@@ -106,7 +106,7 @@ namespace WebApp.Controllers
 			try
 			{
 				ViewBag.venta = _sistema.BuscarVenta(Id);
-
+			
 			}
 			catch (Exception e)
 			{

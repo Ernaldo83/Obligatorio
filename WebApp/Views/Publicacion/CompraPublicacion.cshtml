@@ -1,0 +1,50 @@
+﻿@using Dominio.Entidades
+
+<form method="post" action="/publicacion/ValidarOfertaSubasta/@ViewBag.subasta.Id" class="formularioLogin col-6 col-xl-4  row justify-content-evenly">
+	@if (!String.IsNullOrEmpty(ViewBag.msj))
+	{
+		<p class="alert-info text-center">@ViewBag.msj</p>
+	}
+	<h2>COMPRA de Publicación</h2>
+	<h3 class="text-center">@ViewBag.subasta.Nombre</h3>
+	<table class="table table-striped ">
+		<theah>
+			<tr>
+				<th scope="col">Articulo</th>
+				<th scope="col">Precio</th>
+			</tr>
+		</theah>
+		@foreach (Articulo item in ViewBag.venta.Articulos())
+		{
+			<tr scope="row">
+				<td>@item.Nombre</td>
+				<td>$@item.Precio</td>
+			</tr>
+		}
+	</table>
+	@if (ViewBag.subasta.MostrarOfertas().Count > 0)
+	{
+		<h6 class="text-center">Lista de Ofertas</h6>
+		<table class="table table-striped ">
+			<theah>
+				<tr>
+					<th scope="col">Usuario</th>
+					<th scope="col">Oferta</th>
+				</tr>
+			</theah>
+			@foreach (Oferta item in ViewBag.subasta.MostrarOfertas())
+			{
+				<tr scope="row">
+					<td>@item.Usuario.Nombre</td>
+					<td>$@item.Precio</td>
+				</tr>
+			}
+		</table>
+	}
+	<h2 class="text-center h4">Precio Total $@ViewBag.subasta.ObtenerPrecio()</h2>
+	<label class="col-5">Ingrese Oferta</label>
+	<input class="col-6 text-end" type="number" placeholder="Oferta mìn. $@ViewBag.subasta.ObtenerPrecio()" name="oferta" id="inputOferta">
+
+	<input type="submit" value="OFERTAR" class="col-5 btn-focus">
+	<a class="btn-focus col-5" asp-area="" asp-controller="Publicacion" asp-action="Index" id="salir">Volver</a>
+</form>

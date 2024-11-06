@@ -43,33 +43,39 @@ else if (ViewBag.usuario is Administrador)//dashboard ADMINISTRADOR
             {
                 <td>VENTA</td>
             }
-            else if(item is Subasta)
+            else if (item is Subasta)
             {
                 <td>SUBASTA</td>
             }
             <td>@item.EstadoPublicacion</td>
             <td>@item.ObtenerPrecio()</td>
-            @if (ViewBag.usuario is Administrador )
+            @if (ViewBag.usuario is Administrador)
             {
-                if ( item.EstadoPublicacion == Estado.ABIERTA)
+                if (item.EstadoPublicacion == Estado.ABIERTA)
                 {
                     <td><a class="btn-focus btn-lista" href="/publicacion/FinalizarSubasta/@item.Id">FINALIZAR</a></td>
                 }
                 else
                 {
-                    <td><a class="btn-focus btn-lista visually-hidden" href="/publicacion/FinalizarSubasta/@item.Id" >FINALIZAR</a></td>
+                    <td><a class="btn-focus btn-lista visually-hidden" href="/publicacion/FinalizarSubasta/@item.Id">FINALIZAR</a></td>
                 }
-
             }
             else if (ViewBag.usuario is Cliente)
             {
-                if(item is Venta)
+                if (item.EstadoPublicacion == Estado.ABIERTA)
                 {
-                    <td><a class="btn-focus btn-lista" href="/publicacion/CompraPublicacion/@item.Id">COMPRAR</a></td>
+                    if (item is Venta)
+                    {
+                        <td><a class="btn-focus btn-lista" href="/publicacion/CompraPublicacion/@item.Id">COMPRAR</a></td>
+                    }
+                    else if (item is Subasta)
+                    {
+                        <td><a class="btn-focus btn-lista" href="/publicacion/OfertarSubasta/@item.Id">OFERTAR</a></td>
+                    }
                 }
-                else if (item is Subasta)
+                else
                 {
-                    <td><a class="btn-focus btn-lista" href="/publicacion/OfertarSubasta/@item.Id">OFERTAR</a></td>
+                    <td><a class="btn-focus btn-lista visually-hidden" href="#">SIN MOSTRAR</a></td>
                 }
             }
         </tr>
