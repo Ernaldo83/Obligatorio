@@ -49,8 +49,11 @@ namespace Dominio.Entidades
         {
             if (_ofertas.Count == 0) throw new Exception("No se puede finalizar subasta sin ofertas");
             EstadoPublicacion = Estado.CERRADA;
-            FechaFinalizado = DateTime.Now;          
-            UsuarioComprador = _ofertas[_ofertas.Count - 1].Usuario; ;
+            FechaFinalizado = DateTime.Now;   
+            Cliente unCliente = _ofertas[_ofertas.Count - 1].Usuario;
+            UsuarioComprador = unCliente;
+            unCliente.SaldoBilletera -= ObtenerPrecio();
+
         }
     }
 }
