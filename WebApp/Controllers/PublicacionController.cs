@@ -81,11 +81,24 @@ namespace WebApp.Controllers
             return RedirectToAction("Administrador", new { msj = "Subasta finalizada con éxito" });
         }
         [HttpPost]
-        public IActionResult ValidarOfertaSubasta(int oferta)
+        public IActionResult ValidarOfertaSubasta(int Id, int oferta)
         {
-
-            return View();
-        }
+			ViewBag.msj = String.Empty;
+			Subasta subasta = _sistema.BuscarPublicacionSubasta(Id);
+			Cliente unCliente = _sistema.BuscarCliente(HttpContext.Session.GetString("mail"));
+			ViewBag.subasta = subasta;
+			ViewBag.usuario = unCliente;
+			try
+			{
+				subasta.CargarOferta(new Oferta(unCliente, oferta));
+				ViewBag.msj = "Oferta cargada correctamente";
+				return View("OfertarSubasta");
+			}
+			catch (Exception e)
+			{
+				return View("OfertarSubasta");
+			}
+		}
     }
 }
 
