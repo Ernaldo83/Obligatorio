@@ -69,16 +69,17 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult FinalizarSubasta(Subasta subasta)
         {
+            Subasta _subasta;
             try
             {
-                Subasta _subasta = _sistema.BuscarPublicacionSubasta(subasta.Id);
+                 _subasta = _sistema.BuscarPublicacionSubasta(subasta.Id);
                 _sistema.FinalizarSubasta(_subasta);
             }
             catch (Exception e)
             {
                 return RedirectToAction("FinalizarSubasta", new {msj = e.Message });
             }
-            return RedirectToAction("Administrador", new { msj = "Subasta finalizada con éxito" });
+            return RedirectToAction("Administrador", new { msj = "Subasta finalizada con éxito, FELICITACIONES!!: " + _subasta.UsuarioComprador.Nombre });
         }
         [HttpPost]
         public IActionResult ValidarOfertaSubasta(int Id, int oferta)

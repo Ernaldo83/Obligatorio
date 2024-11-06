@@ -48,12 +48,28 @@ namespace Dominio.Entidades
         public override void Finalizar()
         {
             if (_ofertas.Count == 0) throw new Exception("No se puede finalizar subasta sin ofertas");
-            EstadoPublicacion = Estado.CERRADA;
-            FechaFinalizado = DateTime.Now;   
-            Cliente unCliente = _ofertas[_ofertas.Count - 1].Usuario;
-            UsuarioComprador = unCliente;
-            unCliente.SaldoBilletera -= ObtenerPrecio();
+            bool _clienteValido = false;
 
+            for (int i = _ofertas.Count - 1; i >= 0; i--)
+            {
+                Cliente unCliente = _ofertas[i].Usuario;
+                if (ValidarSaldo(unCliente))
+                {
+                    UsuarioComprador = unCliente;
+                    EstadoPublicacion = Estado.CERRADA;
+                    FechaFinalizado = DateTime.Now;
+                    _clienteValido=true;
+                    break;
+                }
+            }
+            if (!_clienteValido)
+            {
+                throw new Exception("Ningun Cliente tiene saldo para finalizar la subasta");
+            }
+        }
+        private bool ValidarSaldo(Cliente unCliente)
+        {
+            return unCliente.SaldoBilletera >= ObtenerPrecio();
         }
     }
 }
