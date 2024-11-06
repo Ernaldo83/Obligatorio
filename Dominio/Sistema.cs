@@ -512,7 +512,7 @@ namespace Dominio
         public void FinalizarSubasta(Subasta subasta)
         {
             if (subasta == null) throw new Exception("Sin el objeto subtasta para finalizar");
-            subasta.Finalizar();
+            subasta.Finalizar(new Cliente());
         }
 
 		public Venta BuscarVenta(int id)
@@ -523,6 +523,13 @@ namespace Dominio
                 if (item is Venta && item.Id == id) return (Venta) item;
             }
             throw new Exception("No existe publicaciòn.");
+		}
+
+		public void FinalizarVenta(Venta venta, Cliente cliente)
+		{
+			if (venta == null) throw new Exception("Sin el objeto Venta para finalizar");
+			if (cliente == null) throw new Exception("Sin el objeto Cliente para finalizar");
+			venta.Finalizar(cliente);
 		}
 	}
 }

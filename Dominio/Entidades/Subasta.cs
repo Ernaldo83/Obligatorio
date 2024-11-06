@@ -44,7 +44,7 @@ namespace Dominio.Entidades
             base.Validar();
         }
 
-        public override void Finalizar()
+        public override void Finalizar(Cliente cliente)
         {
             if (_ofertas.Count == 0) throw new Exception("No se puede finalizar subasta sin ofertas");
             bool _clienteValido = false;

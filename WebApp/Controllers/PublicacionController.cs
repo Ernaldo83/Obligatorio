@@ -101,19 +101,34 @@ namespace WebApp.Controllers
 				return View("OfertarSubasta");
 			}
 		}
+		[HttpGet]
 		public IActionResult CompraPublicacion(int Id)
 		{
 			try
 			{
-				ViewBag.venta = _sistema.BuscarVenta(Id);
-			
+				ViewBag.venta = _sistema.BuscarVenta(Id);			
 			}
 			catch (Exception e)
 			{
 				ViewBag.msj = e.Message;
-				return View("Publicaciones");
+				return RedirectToAction("Cliente");
 			}
 			return View();
+		}
+		[HttpPost]
+		public IActionResult CompraPublicacion(Venta venta)
+		{
+			try
+			{
+				_sistema.FinalizarVenta(_sistema.BuscarVenta(venta.Id), _sistema.BuscarCliente(HttpContext.Session.GetString("mail")!));
+				ViewBag.msj = "Compra exitosa";
+			}
+			catch (Exception e)
+			{
+				ViewBag.msj = e.Message;
+				return RedirectToAction("CompraPublicacion");
+			}
+			return RedirectToAction("Cliente");
 		}
 	}
 }

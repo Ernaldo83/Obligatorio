@@ -5,6 +5,10 @@ namespace Dominio.Entidades
     public class Venta : Publicacion, IValidable
     {
         public bool Oferta {get;set;}
+        public Venta()
+        {
+
+        }
         public Venta(string nombre,
                         Estado estado,
                         Administrador usuario,
@@ -22,10 +26,13 @@ namespace Dominio.Entidades
             decimal preciofinal = base.ObtenerPrecio();
             return preciofinal;
         }
-        public override void Finalizar()
+        public override void Finalizar(Cliente cliente)
         {
-            throw new NotImplementedException();
-        }
+			UsuarioComprador = cliente;
+			EstadoPublicacion = Estado.CERRADA;
+			FechaFinalizado = DateTime.Now;
+			cliente.SaldoBilletera -= ObtenerPrecio();
+		}
         public override void Validar()
         {
             base.Validar();

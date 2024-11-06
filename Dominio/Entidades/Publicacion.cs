@@ -77,7 +77,7 @@ namespace Dominio.Entidades
             if (articulo == null) throw new Exception("Datos incorrectos al intentar quitar Articulos.");
             _articulos.Remove(articulo);
         }
-        public abstract void Finalizar();
+        public abstract void Finalizar(Cliente cliente);
         public virtual void Validar()
         {
             if (string.IsNullOrEmpty(Nombre) ||
