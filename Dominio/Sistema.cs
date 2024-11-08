@@ -41,23 +41,23 @@ namespace Dominio
             //genera 10 usuarios con mail ficticios
 
             AgregarCliente(new Cliente("Diego", "Geymonat", "dgeymonat85@gmail.com", "Geymon4t", 135000));
-            AgregarCliente(new Cliente("Ana", "Martínez", "ana.martinez92@example.com", "AnaM4rt", 150000));
-            AgregarCliente(new Cliente("Luis", "Pérez", "luis.perez76@example.com", "Lui5Pez", 120000));
+            AgregarCliente(new Cliente("Ana", "Martínez", "ana.martinez92@example.com", "AnaM4rta", 150000));
+            AgregarCliente(new Cliente("Luis", "Pérez", "luis.perez76@example.com", "Lui5Peza", 120000));
             AgregarCliente(new Cliente("María", "Lopez", "maria.lopez88@example.com", "Mar1Lopez", 140000));
-            AgregarCliente(new Cliente("Carlos", "Sánchez", "carlos.sanchez80@example.com", "CarloS8", 160000));
+            AgregarCliente(new Cliente("Carlos", "Sánchez", "carlos.sanchez80@example.com", "CarloS8a", 160000));
             AgregarCliente(new Cliente("Laura", "González", "laura.gonzalez91@example.com", "LauR4Gonz", 110000));
             AgregarCliente(new Cliente("Javier", "Torres", "javier.torres89@example.com", "Jav1Torres", 130000));
             AgregarCliente(new Cliente("Sofía", "Ramírez", "sofia.ramirez85@example.com", "Sofi4Rami", 155000));
             AgregarCliente(new Cliente("Pedro", "Jiménez", "pedro.jimenez93@example.com", "Pedr0Jim", 145000));
             AgregarCliente(new Cliente("Isabel", "Cruz", "isabel.cruz90@example.com", "IsabeL90", 125000));
-            AgregarCliente(new Cliente("Ernaldo", "Rodriguez", "ernaldo.rodriguez.dev@gmail.com", "3rn4ld0", 125000));
+            AgregarCliente(new Cliente("Ernaldo", "Rodriguez", "ernaldo.rodriguez.dev@gmail.com", "3rn4ld00", 125000));
 
             //PROMT DE CHAT GPT
             //con el siguiente formato
             //AgregarAdministrador(new Administrador("Diego", "Geymonat", "dgeymonat84@gmail.com", "Geymon4t"));
             //genera 2 usuarios con mail ficticios
             AgregarAdministrador(new Administrador("Diego", "Geymonat", "dgeymonat84@gmail.com", "Geymon4t"));
-            AgregarAdministrador(new Administrador("Lucía", "Fernández", "lucia.fernandez77@example.com", "Luc1aF"));
+            AgregarAdministrador(new Administrador("Lucía", "Fernández", "lucia.fernandez77@example.com", "Luc1aFull"));
 
             //PRECARGAS CON ERROR
             // AgregarCliente(new Cliente("", "Geymonat", "dgeymonat85@gmail.com", "Geymon4t", 135000)); --Nombre, Apellido, Mail y Pasword no pueden estar vacios.
@@ -325,7 +325,7 @@ namespace Dominio
             {
                 if (item.Email == mail)
                 {
-                    if (item.ObtenerPassword()== password)
+                    if (item.Password == password)
                     {
                         if (item is Cliente)
                         {

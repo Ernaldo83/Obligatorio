@@ -1,12 +1,12 @@
 ﻿@using Dominio.Entidades
 
 
-<form method="post" action="/Usuario/CargarSaldo" class="formularioLogin col-6 col-xl-4  row justify-content-center">
+<form method="post"  class="formularioLogin col-6 col-xl-4  row justify-content-center"> @* action="/Usuario/CargarSaldo" *@
     <h2>Cargar Saldo</h2>
     <label>@ViewBag.usuario.Nombre @ViewBag.usuario.Apellido</label><br>
     <label>Saldo : $@ViewBag.usuario.SaldoBilletera</label><br>
     <label>Ingrese Saldo a Depositar</label><br>
-    <input type="number" required name="Monto" min="0" value="0">
+    <input type="number" required name="Monto" value="0">
     <input type="submit" class="my-2 btn-focus col-5" value="CARGAR">
     <a class="my-2 btn-focus col-5" asp-area="" asp-controller="Publicacion" asp-action="Index" id="salir">Volver</a>
     @if (!String.IsNullOrEmpty(ViewBag.msj))

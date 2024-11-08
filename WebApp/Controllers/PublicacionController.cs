@@ -1,9 +1,11 @@
 ﻿using Dominio;
 using Dominio.Entidades;
 using Microsoft.AspNetCore.Mvc;
+using WebApp.Filtros;
 
 namespace WebApp.Controllers
 {
+	[Logueado]
 	public class PublicacionController : Controller
 	{
 		Sistema _sistema = Sistema.Instancia;

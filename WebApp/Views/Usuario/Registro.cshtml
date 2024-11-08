@@ -1,7 +1,7 @@
 ﻿@using Dominio.Entidades
 @model Cliente
 
-<form method="post" action="/Usuario/NuevoCliente" class="formularioLogin col-6 col-xl-4  row justify-content-center">
+<form method="post" class="formularioLogin col-6 col-xl-4  row justify-content-center">  @*   action="/Usuario/NuevoCliente" *@
     <h2>Registro de usuario</h2>
     <label>Ingrese Nombre</label><br>
     <input type="text" required name="Nombre" value="@Model.Nombre">
@@ -10,9 +10,14 @@
     <label>Ingrese Correo</label><br>
     <input type="text" required name="Email" value="@Model.Email">
     <label>Ingrese Contraseña</label>
-    <input type="text" required name="Password" value="@Model.ObtenerPassword()">
+    <input type="text" required name="Password" value="@Model.Password">
     <label>Ingrese Saldo Inicial</label><br>
-    <input type="number" required name="SaldoBilletera" min="1" value="@Model.SaldoBilletera">
+    <input type="number" required name="SaldoBilletera" value="@Model.SaldoBilletera">
     <input type="submit" class="my-2 btn-focus col-5" value="REGISTRAR">
     <a class="my-2 btn-focus col-5" asp-area="" asp-controller="index" asp-action="index" id="salir">Salir</a>
+    @if (!String.IsNullOrEmpty(ViewBag.msj))
+    {
+        <p class="alert-warning text-center">@ViewBag.msj</p>
+    }
+
 </form>
