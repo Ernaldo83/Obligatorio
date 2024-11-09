@@ -14,6 +14,7 @@ namespace Dominio.Entidades
               ) : base(nombre, estado, usuario, articulos, fechaPublicacion)
         {
         }
+        public Subasta() { }
 
         public List<Oferta> MostrarOfertas()
         {

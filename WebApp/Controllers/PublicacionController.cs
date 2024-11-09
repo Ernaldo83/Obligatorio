@@ -55,7 +55,7 @@ namespace WebApp.Controllers
 		public IActionResult OfertarSubasta(int Id)
 		{
 			Cliente usuario = _sistema.BuscarCliente(HttpContext.Session.GetString("mail"));
-			Subasta subasta = _sistema.BuscarPublicacionSubasta(Id);
+            Subasta subasta = _sistema.BuscarPublicacionSubasta(Id);
 			ViewBag.usuario = usuario;
 			ViewBag.subasta = subasta;
 			return View();
