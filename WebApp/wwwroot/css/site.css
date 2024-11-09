@@ -45,6 +45,9 @@ header{
     font-weight: bold;
     list-style: none;
 }
+.bg-focus{
+    background-color: var(--azul);
+}
 li {
     padding: 0;
     text-decoration: none;
