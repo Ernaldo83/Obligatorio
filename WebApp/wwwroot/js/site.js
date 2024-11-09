@@ -28,3 +28,10 @@ function crearNodo(NodoPadre, tipoNodo, array) {
     NodoPadre.appendChild(nodo);
     return nodo;
 }
+document.addEventListener("DOMContentLoaded", function () {
+    var toastEl = document.getElementById('myToast');
+    if (toastEl) {
+        var toast = new bootstrap.Toast(toastEl);
+        toast.show();
+    }
+});
