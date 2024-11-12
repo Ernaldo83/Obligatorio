@@ -1,10 +1,10 @@
 ﻿@using Dominio.Entidades
 
 <form method="post" class="formularioLogin col-6 col-xl-4  row justify-content-evenly">
-	@if (!String.IsNullOrEmpty(ViewBag.msj))
+	@* @if (!String.IsNullOrEmpty(ViewBag.msj))
 	{
 		<p class="alert-info text-center">@ViewBag.msj</p>
-	}
+	} *@
 	<h2>COMPRA de Publicación</h2>
 	<h3 class="text-center">@ViewBag.venta.Nombre</h3>
 	<input class="visually-hidden" type="number" name="Id" value="@ViewBag.venta.Id" />
@@ -28,3 +28,18 @@
 	<input type="submit" value="COMPRAR" class="col-5 btn-focus">
 	<a class="btn-focus col-5" asp-area="" asp-controller="Publicacion" asp-action="Index" id="salir">Volver</a>
 </form>
+@if (ViewBag.msj != null && ViewBag.msj.ToString() != "")
+{
+	<div class="toast-container position-fixed bottom-0 end-0 p-3">
+		<div class="toast bg-focus text-white" role="alert" aria-live="assertive" aria-atomic="true" id="myToast">
+			<div class="toast-header text-white bg-focus">
+				<strong class="me-auto">FOCUS</strong>
+				<small>Web Store</small>
+				<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+			</div>
+			<div class="toast-body bg-white text-dark">
+				@ViewBag.msj
+			</div>
+		</div>
+	</div>
+}
