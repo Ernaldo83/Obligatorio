@@ -30,12 +30,11 @@ namespace Dominio.Entidades
             _articulos = articulos;
             FechaPublicacion = fechaPublicacion;
         }
-        public Publicacion() { }
+        public Publicacion() 
+        {
 
-        public List<Articulo> Articulos()
-        { 
-            return _articulos;
         }
+
         
         public virtual decimal ObtenerPrecio()
         {

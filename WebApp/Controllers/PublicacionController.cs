@@ -81,7 +81,7 @@ namespace WebApp.Controllers
 			{
 				return RedirectToAction("FinalizarSubasta", new { msj = e.Message });
 			}
-			return RedirectToAction("Administrador", new { msj = "Subasta finalizada con éxito, FELICITACIONES!!: " + _subasta.UsuarioComprador.Nombre });
+			return RedirectToAction("Administrador", new { msj = "Subasta finalizada con éxito"});
 		}
 		[HttpPost]
 		public IActionResult ValidarOfertaSubasta(int Id, int oferta)
