@@ -80,3 +80,8 @@ li {
 ·inputOferta{
     margin-bottom: 5px;
 }
+
+.position-fixed{
+    bottom: 25% !important;
+    right: 3% !important;
+}
