@@ -15,10 +15,7 @@
     <input type="number"  name="SaldoBilletera" value="@Model.SaldoBilletera">
     <input type="submit" class="my-2 btn-focus col-5" value="REGISTRAR">
     <a class="my-2 btn-focus col-5" asp-area="" asp-controller="index" asp-action="index" id="salir">Salir</a>
-    @* @if (!String.IsNullOrEmpty(ViewBag.msj))
-    {
-        <p class="alert-warning text-center">@ViewBag.msj</p>
-    } *@
+  
 
 </form>
 @if (ViewBag.msj != null && ViewBag.msj.ToString() != "")

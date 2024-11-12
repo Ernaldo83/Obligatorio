@@ -7,10 +7,7 @@
     <label>Desea finalizar publicacion??</label><br>   
     <input type="submit" class="my-2 btn-focus col-5" value="CONFIRMAR">
     <a class="my-2 btn-focus col-5" asp-area="" asp-controller="Publicacion" asp-action="Index" id="salir">Volver</a> 
-    @* @if (!String.IsNullOrEmpty(ViewBag.msj))
-    {
-        <p class="alert-info text-center">@ViewBag.msj</p>
-    } *@
+    
 </form>
 @if (ViewBag.msj != null && ViewBag.msj.ToString() != "")
 {

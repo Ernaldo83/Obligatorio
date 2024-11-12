@@ -8,10 +8,7 @@
     <input type="text" required name="pass">
     <input type="submit" class="my-2 btn-focus col-5" value="INGRESAR">
     <label class="col-8">No estas registrado?</label><a class="col-4" asp-area="" asp-controller="Usuario" asp-action="Registro">Registrarse</a>
-    @* @if (!String.IsNullOrEmpty(ViewBag.msj))
-    {
-        <p class="alert-warning text-center">@ViewBag.msj</p>
-    } *@
+    
 </form>
 @if (ViewBag.msj != null && ViewBag.msj.ToString() != "")
 {
