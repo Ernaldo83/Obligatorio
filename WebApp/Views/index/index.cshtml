@@ -8,8 +8,20 @@
     <input type="text" required name="pass">
     <input type="submit" class="my-2 btn-focus col-5" value="INGRESAR">
     <label class="col-8">No estas registrado?</label><a class="col-4" asp-area="" asp-controller="Usuario" asp-action="Registro">Registrarse</a>
-    @if (!String.IsNullOrEmpty(ViewBag.msj))
-    {
-        <p class="alert-warning text-center">@ViewBag.msj</p>
-    }
+    
 </form>
+@if (ViewBag.msj != null && ViewBag.msj.ToString() != "")
+{
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div class="toast bg-focus text-white" role="alert" aria-live="assertive" aria-atomic="true" id="myToast">
+            <div class="toast-header text-white bg-focus">
+                <strong class="me-auto">FOCUS</strong>
+                <small>Web Store</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body bg-white text-dark">
+                @ViewBag.msj
+            </div>
+        </div>
+    </div>
+}
