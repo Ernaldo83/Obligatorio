@@ -16,6 +16,11 @@ namespace Dominio.Entidades
         }
         public Subasta() { }
 
+        public override IEnumerable<Articulo> Articulos()
+        {
+            return base.Articulos();
+        }
+
         public List<Oferta> MostrarOfertas()
         {
             return _ofertas;

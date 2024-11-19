@@ -35,6 +35,11 @@ namespace Dominio.Entidades
 
         }
 
+        public virtual IEnumerable<Articulo> Articulos()
+        {  
+            return _articulos; 
+        }
+
         
         public virtual decimal ObtenerPrecio()
         {
