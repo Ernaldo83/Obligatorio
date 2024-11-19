@@ -1,11 +1,43 @@
 ﻿@using Dominio.Entidades
 
 <form method="post" class="formularioLogin col-6 col-xl-4  row justify-content-center">
-    <h3>Finalizar Publicacion Nro: @ViewBag.Subasta.Id</h3>
-    <label>Nombre: @ViewBag.Subasta.Nombre</label><br>
-    <label>Fecha Publicación: $@ViewBag.Subasta.EstadoPublicacion</label><br>
-    <label>Desea finalizar publicacion??</label><br>   
-    <input type="submit" class="my-2 btn-focus col-5" value="CONFIRMAR">
+	<h2>Finalizar Subasta Nro: @ViewBag.Subasta.Id</h2>
+	<h3 class="text-center">@ViewBag.subasta.Nombre</h3>
+	<table class="table table-striped ">
+		<theah>
+			<tr>
+				<th scope="col">Articulo</th>
+				<th scope="col">Precio</th>
+			</tr>
+		</theah>
+		@foreach (Articulo item in ViewBag.subasta.Articulos())
+		{
+			<tr scope="row">
+				<td>@item.Nombre</td>
+				<td>$@item.Precio</td>
+			</tr>
+		}
+	</table>
+	@if (ViewBag.subasta.MostrarOfertas().Count > 0)
+	{
+		<h6 class="text-center">Lista de Ofertas</h6>
+		<table class="table table-striped ">
+			<theah>
+				<tr>
+					<th scope="col">Usuario</th>
+					<th scope="col">Oferta</th>
+				</tr>
+			</theah>
+			@foreach (Oferta item in ViewBag.subasta.MostrarOfertas())
+			{
+				<tr scope="row">
+					<td>@item.Usuario.Nombre</td>
+					<td>$@item.Precio</td>
+				</tr>
+			}
+		</table>
+	}
+    <input type="submit" class="my-2 btn-focus col-5" value="FINALIZAR">
     <a class="my-2 btn-focus col-5" asp-area="" asp-controller="Publicacion" asp-action="Index" id="salir">Volver</a> 
     
 </form>

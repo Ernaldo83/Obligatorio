@@ -79,7 +79,7 @@ namespace WebApp.Controllers
 			}
 			catch (Exception e)
 			{
-				return RedirectToAction("FinalizarSubasta", new { msj = e.Message });
+				return RedirectToAction("Administrador", new { msj = e.Message });
 			}
 			return RedirectToAction("Administrador", new { msj = "Subasta finalizada con éxito"});
 		}
