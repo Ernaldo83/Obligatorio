@@ -5,6 +5,7 @@ namespace Dominio.Entidades
 	public class Subasta : Publicacion, IValidable
 	{
 		private List<Oferta> _ofertas = new List<Oferta>();
+		private List<Oferta> _ofertasFinalizadas = new List<Oferta>();
 
 		public Subasta(string nombre,
 				Estado estado,
@@ -35,15 +36,26 @@ namespace Dominio.Entidades
 		}
 		public void CargarOferta(Oferta oferta)
 		{
+			oferta.Validar();
 			if (oferta == null) throw new Exception("Parametro incorrecto para crear una oferta");
 			if (EstadoPublicacion == Estado.CERRADA || EstadoPublicacion == Estado.CANCELADA) throw new Exception("No se puede ofertar en una publicacion Finalizada o Cancelada");
 			if (_ofertas.Count > 0)
 			{
 				if (oferta.Precio <= _ofertas[_ofertas.Count - 1].Precio) throw new Exception("El valor debe ser mayor que el precio actual");
+				if (oferta.Usuario.Equals(_ofertas[_ofertas.Count - 1].Usuario))
+				{
+					_ofertas[_ofertas.Count - 1].Precio = oferta.Precio;
+				}
+				else
+				{
+					_ofertas.Add(oferta);
+				}
 			}
-			oferta.Validar();
+			else
+			{
+				_ofertas.Add(oferta);
+			}
 
-			_ofertas.Add(oferta);
 		}
 		public override void Validar()
 		{
@@ -72,6 +84,7 @@ namespace Dominio.Entidades
 					_clienteValido = true;
 					break;
 				}
+				_ofertas.Remove(_ofertas[i]);
 			}
 			if (!_clienteValido)
 			{
