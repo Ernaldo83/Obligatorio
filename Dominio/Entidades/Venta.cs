@@ -28,7 +28,8 @@ namespace Dominio.Entidades
         }
         public override void Finalizar(Cliente cliente)
         {
-			UsuarioComprador = cliente;
+            if (cliente.SaldoBilletera <= ObtenerPrecio()) throw new Exception("Saldo insuficiente para realizar la compra");
+            UsuarioComprador = cliente;
 			EstadoPublicacion = Estado.CERRADA;
 			FechaFinalizado = DateTime.Now;
 			cliente.SaldoBilletera -= ObtenerPrecio();

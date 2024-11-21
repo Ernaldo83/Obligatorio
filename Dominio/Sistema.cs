@@ -1,7 +1,7 @@
 ﻿using Dominio.Entidades;
 namespace Dominio
 {
-    
+
     public class Sistema
     {
         private static Sistema _instancia;
@@ -19,7 +19,7 @@ namespace Dominio
                     _instancia = new Sistema();
                     _instancia.PreCargar();
                 }
-                
+
                 return _instancia;
             }
         }
@@ -32,7 +32,7 @@ namespace Dominio
             PrecargarPublicaciones();
             PrecargarOfertas();
         }
-        
+
         private void PrecargarUsuarios()
         {
             //PROMT DE CHAT GPT
@@ -40,7 +40,7 @@ namespace Dominio
             //AgregarCliente(new Cliente("Diego", "Geymonat", "dgeymonat85@gmail.com", "Geymon4t", 135000));
             //genera 10 usuarios con mail ficticios
 
-            AgregarCliente(new Cliente("Diego", "Geymonat", "dgeymonat85@gmail.com", "Geymon4t", 135000));
+            AgregarCliente(new Cliente("Diego", "Geymonat", "dgeymonat85@gmail.com", "Geymon4t", 1500));
             AgregarCliente(new Cliente("Ana", "Martínez", "ana.martinez92@example.com", "AnaM4rta", 150000));
             AgregarCliente(new Cliente("Luis", "Pérez", "luis.perez76@example.com", "Lui5Peza", 120000));
             AgregarCliente(new Cliente("María", "Lopez", "maria.lopez88@example.com", "Mar1Lopez", 140000));
@@ -442,7 +442,7 @@ namespace Dominio
         public List<Publicacion> BuscarPublicacionEntreFecha(DateTime fecha1, DateTime fecha2)
         {
             DateTime fechaMayor = fecha1;
-            if (fecha1> fecha2)
+            if (fecha1 > fecha2)
             {
                 fecha1 = fecha2;
                 fecha2 = fechaMayor;
@@ -508,28 +508,27 @@ namespace Dominio
             if (BuscarAdministrador(nuevoUsuario.Email) != null) throw new Exception("El usuario ya existe");
             _usuarios.Add(nuevoUsuario);
         }
-
         public void FinalizarSubasta(Subasta subasta)
         {
             if (subasta == null) throw new Exception("Sin el objeto subtasta para finalizar");
             subasta.Finalizar(new Cliente());
         }
 
-		public Venta BuscarVenta(int id)
-		{
-            
-			foreach(Publicacion item in _publicaciones)
+        public Venta BuscarVenta(int id)
+        {
+
+            foreach (Publicacion item in _publicaciones)
             {
-                if (item is Venta && item.Id == id) return (Venta) item;
+                if (item is Venta && item.Id == id) return (Venta)item;
             }
             throw new Exception("No existe publicaciòn.");
-		}
+        }
 
-		public void FinalizarVenta(Venta venta, Cliente cliente)
-		{
-			if (venta == null) throw new Exception("Sin el objeto Venta para finalizar");
-			if (cliente == null) throw new Exception("Sin el objeto Cliente para finalizar");
-			venta.Finalizar(cliente);
-		}
-	}
+        public void FinalizarVenta(Venta venta, Cliente cliente)
+        {
+            if (venta == null) throw new Exception("Sin el objeto Venta para finalizar");
+            if (cliente == null) throw new Exception("Sin el objeto Cliente para finalizar");
+            venta.Finalizar(cliente);
+        }
+    }
 }

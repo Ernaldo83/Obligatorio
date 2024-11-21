@@ -1,6 +1,7 @@
 ﻿using Dominio;
 using Dominio.Entidades;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewComponents;
 using WebApp.Filtros;
 
 namespace WebApp.Controllers
@@ -104,11 +105,12 @@ namespace WebApp.Controllers
 			}
 		}
 		[HttpGet]
-		public IActionResult CompraPublicacion(int Id)
+		public IActionResult CompraPublicacion(int Id, string msj)
 		{
 			try
 			{
-				ViewBag.venta = _sistema.BuscarVenta(Id);			
+            ViewBag.msj = msj;
+            ViewBag.venta = _sistema.BuscarVenta(Id);			
 			}
 			catch (Exception e)
 			{
@@ -128,7 +130,7 @@ namespace WebApp.Controllers
 			catch (Exception e)
 			{
 				ViewBag.msj = e.Message;
-				return RedirectToAction("CompraPublicacion");
+				return RedirectToAction("CompraPublicacion", new { msj = e.Message});
 			}
 			return RedirectToAction("Cliente");
 		}

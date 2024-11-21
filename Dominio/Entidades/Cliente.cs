@@ -34,7 +34,7 @@ namespace Dominio.Entidades
 
 		public void CargarSaldo(decimal saldo)
 		{
-			if (saldo <= 0) throw new Exception("");
+			if (saldo <= 0) throw new Exception("El monto no puede ser negativo");
 			SaldoBilletera += saldo;
 		}
 

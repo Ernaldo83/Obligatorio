@@ -5,7 +5,7 @@ namespace Dominio.Entidades
 	public class Subasta : Publicacion, IValidable
 	{
 		private List<Oferta> _ofertas = new List<Oferta>();
-		private List<Oferta> _ofertasFinalizadas = new List<Oferta>();
+	//	private List<Oferta> _ofertasFinalizadas = new List<Oferta>();
 
 		public Subasta(string nombre,
 				Estado estado,

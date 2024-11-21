@@ -2,7 +2,7 @@
 
 namespace Dominio.Entidades
 {
-    public abstract class Publicacion:IValidable
+    public abstract class Publicacion : IValidable
     {
 
         private List<Articulo> _articulos = new List<Articulo>();
@@ -18,7 +18,7 @@ namespace Dominio.Entidades
 
         public Publicacion(string nombre,
                         Estado estado,
-                        Administrador usuario,                     
+                        Administrador usuario,
                         List<Articulo> articulos,
                         DateTime fechaPublicacion)
         {
@@ -26,21 +26,17 @@ namespace Dominio.Entidades
             Nombre = nombre;
             EstadoPublicacion = estado;
             Usuario = usuario;
-      
             _articulos = articulos;
             FechaPublicacion = fechaPublicacion;
         }
-        public Publicacion() 
+        public Publicacion()
         {
 
         }
-
         public virtual IEnumerable<Articulo> Articulos()
-        {  
-            return _articulos; 
+        {
+            return _articulos;
         }
-
-        
         public virtual decimal ObtenerPrecio()
         {
             decimal preciofinal = 0;
@@ -92,7 +88,7 @@ namespace Dominio.Entidades
             }
             if (_articulos.Count == 0) throw new Exception("Debe seleccionar al menos un artículo para la publicacion");
             if (FechaPublicacion > DateTime.Now) throw new Exception("La fecha de publicacion no puede ser mayor a la actual.");
-            foreach(Articulo unArticulo in _articulos)
+            foreach (Articulo unArticulo in _articulos)
             {
                 if (unArticulo == null) throw new Exception("Articulo mal ingresado");
             }

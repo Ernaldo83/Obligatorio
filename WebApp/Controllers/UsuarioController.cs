@@ -82,8 +82,8 @@ namespace WebApp.Controllers
             }
             catch (Exception e)
             {
-                msj = e.Message;
-                return RedirectToAction("Index", "Index", new { msj });
+                //msj = ;
+                return RedirectToAction("Index", new { msj = e.Message });
             }
         }
 
@@ -95,13 +95,13 @@ namespace WebApp.Controllers
             {
                 Cliente usuario = _sistema.BuscarCliente(HttpContext.Session.GetString("mail"));
                 usuario.CargarSaldo(Monto);
-                return RedirectToAction("Saldo", "usuario", new { msj = "Carga de saldo efectuada correctamente" });
+                return RedirectToAction("Saldo", new { msj = "Carga de saldo efectuada correctamente" });
             }
             catch (Exception e)
             {
-                msj = e.Message;
-            }
-            return RedirectToAction("Saldo", "usuario", new { msj });
+				return RedirectToAction("Saldo", new { msj = e.Message });
+			}
+           
         }
     }
 }
