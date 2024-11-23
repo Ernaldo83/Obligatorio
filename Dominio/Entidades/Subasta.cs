@@ -54,6 +54,7 @@ namespace Dominio.Entidades
 			}
 			else // si no hay ofertas las agrega
 			{
+				if (valorOferta < ObtenerPrecio()) throw new Exception("La oferta no puede ser menor al precio base.");
 				_ofertas.Add(oferta);
 			}
 
