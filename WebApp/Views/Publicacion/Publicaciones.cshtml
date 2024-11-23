@@ -21,65 +21,73 @@ else if (ViewBag.usuario is Administrador)//dashboard ADMINISTRADOR
         crearNodo(nav, "a", ["innerHTML", "SALIR", "class", "btn-focus col-md-2", "href", "/Usuario/Logout"]);
     </script>
 }
-
-<table class="table table-striped ">
-    <theah>
-        <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">Tipo</th>
-            <th scope="col">Estado</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Fecha de Publicación</th>
-            <th scope="col"></th>
-        </tr>
-    </theah>
-    @foreach (Publicacion item in ViewBag.Publicaciones)
-    {
-        <tr scope="row">
-            <td>@item.Nombre</td>
-            @if (item is Venta)
-            {
-                <td>VENTA</td>
-            }
-            else if (item is Subasta)
-            {
-                <td>SUBASTA</td>
-            }
-            <td>@item.EstadoPublicacion</td>
-            <td>@item.ObtenerPrecio()</td>
-            <td>@item.FechaPublicacion.ToShortDateString()</td>
-            @if (ViewBag.usuario is Administrador)
-            {
-                if (item.EstadoPublicacion == Estado.ABIERTA)
+@if (ViewBag.Publicaciones.count != 0)
+{
+    <table class="table table-striped ">
+        <theah>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Fecha de Publicación</th>
+                <th scope="col"></th>
+            </tr>
+        </theah>
+        @foreach (Publicacion item in ViewBag.Publicaciones)
+        {
+            <tr scope="row">
+                <td>@item.Nombre</td>
+                @if (item is Venta)
                 {
-                    <td><a class="btn-focus btn-lista" href="/publicacion/FinalizarSubasta/@item.Id">FINALIZAR</a></td>
+                    <td>VENTA</td>
                 }
-                else
+                else if (item is Subasta)
                 {
-                    <td><a class="btn-focus btn-lista visually-hidden" href="/publicacion/FinalizarSubasta/@item.Id">FINALIZAR</a></td>
+                    <td>SUBASTA</td>
                 }
-            }
-            else if (ViewBag.usuario is Cliente)
-            {
-                if (item.EstadoPublicacion == Estado.ABIERTA)
+                <td>@item.EstadoPublicacion</td>
+                <td>@item.ObtenerPrecio()</td>
+                <td>@item.FechaPublicacion.ToShortDateString()</td>
+                @if (ViewBag.usuario is Administrador)
                 {
-                    if (item is Venta)
+                    if (item.EstadoPublicacion == Estado.ABIERTA)
                     {
-                        <td><a class="btn-focus btn-lista" href="/publicacion/CompraPublicacion/@item.Id">COMPRAR</a></td>
+                        <td><a class="btn-focus btn-lista" href="/publicacion/FinalizarSubasta/@item.Id">FINALIZAR</a></td>
                     }
-                    else if (item is Subasta)
+                    else
                     {
-                        <td><a class="btn-focus btn-lista" href="/publicacion/OfertarSubasta/@item.Id">OFERTAR</a></td>
+                        <td><a class="btn-focus btn-lista visually-hidden" href="/publicacion/FinalizarSubasta/@item.Id">FINALIZAR</a></td>
                     }
                 }
-                else
+                else if (ViewBag.usuario is Cliente)
                 {
-                    <td><a class="btn-focus btn-lista visually-hidden" href="#">SIN MOSTRAR</a></td>
+                    if (item.EstadoPublicacion == Estado.ABIERTA)
+                    {
+                        if (item is Venta)
+                        {
+                            <td><a class="btn-focus btn-lista" href="/publicacion/CompraPublicacion/@item.Id">COMPRAR</a></td>
+                        }
+                        else if (item is Subasta)
+                        {
+                            <td><a class="btn-focus btn-lista" href="/publicacion/OfertarSubasta/@item.Id">OFERTAR</a></td>
+                        }
+                    }
+                    else
+                    {
+                        <td><a class="btn-focus btn-lista visually-hidden" href="#">SIN MOSTRAR</a></td>
+                    }
                 }
-            }
-        </tr>
-    }
-</table>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div class="alert alert-primary" role="alert">
+        No hay publicaciones para mostrar.
+    </div>
+}
 @if (ViewBag.msj != null && ViewBag.msj.ToString() != "")
 {
     <div class="toast-container position-fixed bottom-0 end-0 p-3">

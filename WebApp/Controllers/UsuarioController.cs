@@ -65,7 +65,7 @@ namespace WebApp.Controllers
             HttpContext.Session.Remove("pass");
             return RedirectToAction("Index", "Index");
         }
-
+        [Logueado]
         public IActionResult Saldo(string msj)
         {
             try

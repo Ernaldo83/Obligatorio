@@ -38,7 +38,14 @@ namespace Dominio.Entidades
         }
         public void ValidarPassword(string password)
         {
+            int _numeros = 0;
             if (password.Length < 8) throw new Exception("La contraseña debe tener al menos 8 caracteres");
+            for (int i = 0; i < password.Length; i++)
+            {
+                if (Convert.ToInt32(password[i]) >= 48 && Convert.ToInt32(password[i]) <= 57)
+                { _numeros++; }
+            }
+            if (_numeros == password.Length || _numeros == 0) throw new Exception("La contraseña debe ser alfanumérica");
         }
         public abstract override string ToString();
     }
