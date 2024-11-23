@@ -34,15 +34,17 @@ namespace Dominio.Entidades
 			}
 			return base.ObtenerPrecio();
 		}
-		public void CargarOferta(Oferta oferta)
+		public void CargarOferta(Cliente cliente, int valorOferta)
 		{
-			oferta.Validar();
-			if (oferta == null) throw new Exception("Parametro incorrecto para crear una oferta");
-			if (EstadoPublicacion == Estado.CERRADA || EstadoPublicacion == Estado.CANCELADA) throw new Exception("No se puede ofertar en una publicacion Finalizada o Cancelada");
-			if (_ofertas.Count > 0)
+            if (cliente == null) throw new Exception("Parametro incorrecto para crear una oferta");
+            if (EstadoPublicacion == Estado.CERRADA || EstadoPublicacion == Estado.CANCELADA) throw new Exception("No se puede ofertar en una publicacion Finalizada o Cancelada");
+            Oferta oferta = new Oferta(cliente, valorOferta);
+			oferta.Validar();			
+			
+			if (_ofertas.Count > 0) // en el caso que haya al menos 1 oferta
 			{
 				if (oferta.Precio <= _ofertas[_ofertas.Count - 1].Precio) throw new Exception("El valor debe ser mayor que el precio actual");
-				if (oferta.Usuario.Equals(_ofertas[_ofertas.Count - 1].Usuario))
+				if (oferta.Usuario.Equals(_ofertas[_ofertas.Count - 1].Usuario)) //validamos que si el usuario es el mismo que la última oferta, entonces sobreescribirá la oferta
 				{
 					_ofertas[_ofertas.Count - 1].Precio = oferta.Precio;
 				}
@@ -51,7 +53,7 @@ namespace Dominio.Entidades
 					_ofertas.Add(oferta);
 				}
 			}
-			else
+			else // si no hay ofertas las agrega
 			{
 				_ofertas.Add(oferta);
 			}
