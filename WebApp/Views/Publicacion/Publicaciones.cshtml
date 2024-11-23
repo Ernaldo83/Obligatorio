@@ -29,6 +29,7 @@ else if (ViewBag.usuario is Administrador)//dashboard ADMINISTRADOR
             <th scope="col">Tipo</th>
             <th scope="col">Estado</th>
             <th scope="col">Precio</th>
+            <th scope="col">Fecha de Publicación</th>
             <th scope="col"></th>
         </tr>
     </theah>
@@ -46,6 +47,7 @@ else if (ViewBag.usuario is Administrador)//dashboard ADMINISTRADOR
             }
             <td>@item.EstadoPublicacion</td>
             <td>@item.ObtenerPrecio()</td>
+            <td>@item.FechaPublicacion.ToShortDateString()</td>
             @if (ViewBag.usuario is Administrador)
             {
                 if (item.EstadoPublicacion == Estado.ABIERTA)

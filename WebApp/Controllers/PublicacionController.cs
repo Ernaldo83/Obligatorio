@@ -38,7 +38,7 @@ namespace WebApp.Controllers
         public IActionResult Cliente()
         {
             Cliente usuario = _sistema.BuscarCliente(HttpContext.Session.GetString("mail"));
-            List<Publicacion> publicaciones = _sistema.ListaPublicaciones("todos", Estado.TODOS);
+            IEnumerable<Publicacion> publicaciones = _sistema.ListaPublicaciones("todos", Estado.TODOS);
             ViewBag.usuario = usuario;
             ViewBag.Publicaciones = publicaciones;
             return View("Publicaciones");
@@ -47,7 +47,7 @@ namespace WebApp.Controllers
         {
             ViewBag.msj = msj;
             Administrador usuario = _sistema.BuscarAdministrador(HttpContext.Session.GetString("mail"));
-            List<Publicacion> publicaciones = _sistema.ListaPublicaciones("subasta", Estado.TODOS);
+            IEnumerable<Publicacion> publicaciones = _sistema.ListaPublicaciones("subasta", Estado.TODOS);
             ViewBag.usuario = usuario;
             ViewBag.Publicaciones = publicaciones;
             return View("Publicaciones");

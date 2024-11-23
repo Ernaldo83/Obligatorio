@@ -37,6 +37,7 @@ header{
 }
 .btn-focus{
     text-decoration: none;
+    display: block;
     text-align: center;
     align-content:center;
     background-color: var(--azul);
@@ -84,4 +85,7 @@ li {
 .position-fixed{
     bottom: 25% !important;
     right: 3% !important;
+}
+.table tr td{
+    align-content: center;
 }

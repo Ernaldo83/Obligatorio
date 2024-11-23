@@ -2,7 +2,7 @@
 
 namespace Dominio.Entidades
 {
-    public abstract class Publicacion : IValidable
+    public abstract class Publicacion : IValidable, IComparable <Publicacion>
     {
 
         private List<Articulo> _articulos = new List<Articulo>();
@@ -92,6 +92,12 @@ namespace Dominio.Entidades
             {
                 if (unArticulo == null) throw new Exception("Articulo mal ingresado");
             }
+        }
+
+        public int CompareTo(Publicacion? other)
+        {
+            if (other == null) throw new Exception("other");
+            return FechaPublicacion.CompareTo(other.FechaPublicacion);
         }
     }
 }

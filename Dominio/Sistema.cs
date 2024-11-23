@@ -258,11 +258,11 @@ namespace Dominio
         private void PrecargarOfertas()
         {
             Subasta unaPublicacion = BuscarPublicacionSubasta(10);
-            unaPublicacion.CargarOferta(new Oferta(BuscarCliente("ernaldo.rodriguez.dev@gmail.com"), 1334));
-            unaPublicacion.CargarOferta(new Oferta(BuscarCliente("dgeymonat85@gmail.com"), 1456));
+            unaPublicacion.CargarOferta(BuscarCliente("ernaldo.rodriguez.dev@gmail.com"), 1334);
+            unaPublicacion.CargarOferta(BuscarCliente("dgeymonat85@gmail.com"), 1456);
             unaPublicacion = BuscarPublicacionSubasta(19);
-            unaPublicacion.CargarOferta(new Oferta(BuscarCliente("ernaldo.rodriguez.dev@gmail.com"), 1334));
-            unaPublicacion.CargarOferta(new Oferta(BuscarCliente("dgeymonat85@gmail.com"), 1456));
+            unaPublicacion.CargarOferta(BuscarCliente("ernaldo.rodriguez.dev@gmail.com"), 1334);
+            unaPublicacion.CargarOferta(BuscarCliente("dgeymonat85@gmail.com"), 1456);
 
             //Subasta unaPublicacion = BuscarPublicacionSubasta(1);
             //unaPublicacion.CargarOferta(new Oferta(BuscarCliente("ernaldo.rodriguez.dev@gmail.com"), 1334)); --El id ingresado no es una subasta.
@@ -323,26 +323,19 @@ namespace Dominio
             if (String.IsNullOrEmpty(password)) throw new Exception("No se a ingresado el password");
             foreach (Usuario item in _usuarios)
             {
-                if (item.Email == mail)
+                if (item.Email == mail && item.Password == password)
                 {
-                    if (item.Password == password)
+                    if (item is Cliente)
                     {
-                        if (item is Cliente)
-                        {
-                            return (Cliente)item;
-                        }
-                        else
-                        {
-                            return (Administrador)item;
-                        }
+                        return (Cliente)item;
                     }
                     else
                     {
-                        throw new Exception("Constraseña incorrecta");
+                        return (Administrador)item;
                     }
                 }
             }
-            return null;
+            throw new Exception("Credenciales incorrectas");
         }
         public Categoria BuscarCategoria(string categoria)
         {
@@ -396,7 +389,7 @@ namespace Dominio
         {
             return _categorias;
         }
-        public List<Publicacion> ListaPublicaciones(string tipo, Estado estado)
+        public IEnumerable<Publicacion> ListaPublicaciones(string tipo, Estado estado)
         {
             if (string.IsNullOrEmpty(tipo)) throw new Exception("No se ha cargado el tipo en el parametro");
             List<Publicacion> publicaciones = new List<Publicacion>();
@@ -437,6 +430,7 @@ namespace Dominio
                     }
                 }
             }
+            publicaciones.Sort();
             return publicaciones;
         }
         public List<Publicacion> BuscarPublicacionEntreFecha(DateTime fecha1, DateTime fecha2)

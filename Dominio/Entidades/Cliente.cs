@@ -29,12 +29,14 @@ namespace Dominio.Entidades
 		public override void Validar()
 		{
 			base.Validar();
-			if (SaldoBilletera < 0) throw new Exception("El saldo no puede ser negativo");
-		}
+            if (SaldoBilletera < 0) throw new Exception("El monto no puede ser negativo");
+            if (SaldoBilletera == 0) throw new Exception("Solo pueden ingresarse valores numéricos mayores que cero");
+        }
 
 		public void CargarSaldo(decimal saldo)
 		{
-			if (saldo <= 0) throw new Exception("El monto no puede ser negativo");
+			if (saldo < 0) throw new Exception("El monto no puede ser negativo");
+			if (saldo == 0) throw new Exception("Solo pueden ingresarse valores numéricos mayores que cero");
 			SaldoBilletera += saldo;
 		}
 
