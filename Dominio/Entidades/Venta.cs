@@ -28,6 +28,7 @@ namespace Dominio.Entidades
         }
         public override void Finalizar(Cliente cliente)
         {
+            if (EstadoPublicacion == Estado.CERRADA || EstadoPublicacion == Estado.CANCELADA) throw new Exception("No se puede comprar una publicacion Finalizada o Cancelada");
             if (cliente.SaldoBilletera <= ObtenerPrecio()) throw new Exception("Saldo insuficiente para realizar la compra");
             UsuarioComprador = cliente;
 			EstadoPublicacion = Estado.CERRADA;
