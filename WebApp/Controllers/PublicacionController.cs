@@ -35,8 +35,9 @@ namespace WebApp.Controllers
             return RedirectToAction("index", "index", new { msj });
         }
 
-        public IActionResult Cliente()
+        public IActionResult Cliente(string msj)
         {
+            ViewBag.msj = msj;
             Cliente usuario = _sistema.BuscarCliente(HttpContext.Session.GetString("mail"));
             IEnumerable<Publicacion> publicaciones = _sistema.ListaPublicaciones("todos", Estado.TODOS);
             ViewBag.usuario = usuario;
@@ -73,7 +74,7 @@ namespace WebApp.Controllers
         public IActionResult FinalizarSubasta(Subasta subasta)
         {
             Subasta _subasta;
-            
+
             try
             {
                 Administrador usuario = _sistema.BuscarAdministrador(HttpContext.Session.GetString("mail"));
@@ -128,14 +129,13 @@ namespace WebApp.Controllers
             try
             {
                 _sistema.FinalizarVenta(_sistema.BuscarVenta(venta.Id), _sistema.BuscarCliente(HttpContext.Session.GetString("mail")!));
-                ViewBag.msj = "Compra exitosa";
             }
             catch (Exception e)
             {
                 ViewBag.msj = e.Message;
                 return RedirectToAction("CompraPublicacion", new { msj = e.Message });
             }
-            return RedirectToAction("Cliente");
+            return RedirectToAction("Cliente", new { msj = "Compra exitosa" });
         }
     }
 }
