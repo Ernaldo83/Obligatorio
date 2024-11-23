@@ -503,10 +503,10 @@ namespace Dominio
             _usuarios.Add(nuevoUsuario);
         }
 
-        public void FinalizarSubasta(Subasta subasta)
+        public void FinalizarSubasta(Subasta subasta, Usuario usuario)
         {
             if (subasta == null) throw new Exception("Sin el objeto subtasta para finalizar");
-            subasta.Finalizar(new Cliente());
+            subasta.Finalizar(usuario);
         }
         public Venta BuscarVenta(int id)
         {

@@ -14,7 +14,8 @@ namespace Dominio.Entidades
         public DateTime FechaFinalizado { get; set; }
         public Estado EstadoPublicacion { get; set; }
         public Administrador Usuario { get; set; }
-        public Cliente UsuarioComprador { get; set; }
+        public Usuario UsuarioComprador { get; set; }
+        public Usuario UsuarioFinalizador { get; set; }
 
         public Publicacion(string nombre,
                         Estado estado,
@@ -77,7 +78,7 @@ namespace Dominio.Entidades
             if (articulo == null) throw new Exception("Datos incorrectos al intentar quitar Articulos.");
             _articulos.Remove(articulo);
         }
-        public abstract void Finalizar(Cliente cliente);
+        public abstract void Finalizar(Usuario usuario);
         public virtual void Validar()
         {
             if (string.IsNullOrEmpty(Nombre) ||

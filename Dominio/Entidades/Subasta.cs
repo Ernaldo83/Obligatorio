@@ -63,8 +63,10 @@ namespace Dominio.Entidades
 			base.Validar();
 		}
 
-		public override void Finalizar(Cliente cliente)
+		public override void Finalizar(Usuario usuario)
 		{
+            UsuarioFinalizador = usuario;
+            if (usuario == null) throw new Exception("Error en el envío de parametros");
 			if (_ofertas.Count == 0)
 			{
 				EstadoPublicacion = Estado.CANCELADA;

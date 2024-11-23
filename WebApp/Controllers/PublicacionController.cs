@@ -73,10 +73,12 @@ namespace WebApp.Controllers
         public IActionResult FinalizarSubasta(Subasta subasta)
         {
             Subasta _subasta;
+            
             try
             {
+                Administrador usuario = _sistema.BuscarAdministrador(HttpContext.Session.GetString("mail"));
                 _subasta = _sistema.BuscarPublicacionSubasta(subasta.Id);
-                _sistema.FinalizarSubasta(_subasta);
+                _sistema.FinalizarSubasta(_subasta, usuario);
             }
             catch (Exception e)
             {

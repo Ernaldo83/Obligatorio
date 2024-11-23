@@ -21,7 +21,7 @@ else if (ViewBag.usuario is Administrador)//dashboard ADMINISTRADOR
         crearNodo(nav, "a", ["innerHTML", "SALIR", "class", "btn-focus col-md-2", "href", "/Usuario/Logout"]);
     </script>
 }
-@if (ViewBag.Publicaciones.count != 0)
+@if (ViewBag.Publicaciones.Count != 0)
 {
     <table class="table table-striped ">
         <theah>
@@ -31,6 +31,9 @@ else if (ViewBag.usuario is Administrador)//dashboard ADMINISTRADOR
                 <th scope="col">Estado</th>
                 <th scope="col">Precio</th>
                 <th scope="col">Fecha de Publicación</th>
+                @* <th scope="col">Creador</th>
+                <th scope="col">Comprador</th>
+                <th scope="col">Finalizador</th> *@
                 <th scope="col"></th>
             </tr>
         </theah>
@@ -49,6 +52,9 @@ else if (ViewBag.usuario is Administrador)//dashboard ADMINISTRADOR
                 <td>@item.EstadoPublicacion</td>
                 <td>@item.ObtenerPrecio()</td>
                 <td>@item.FechaPublicacion.ToShortDateString()</td>
+                @* <td>@item.Usuario.Email</td>
+                <td>@if (item.UsuarioComprador != null) @item.UsuarioComprador.Email</td>
+                <td>@if (item.UsuarioFinalizador != null) @item.UsuarioFinalizador.Email</td> *@
                 @if (ViewBag.usuario is Administrador)
                 {
                     if (item.EstadoPublicacion == Estado.ABIERTA)

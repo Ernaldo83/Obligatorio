@@ -4,7 +4,7 @@ namespace Dominio.Entidades
 {
     public class Venta : Publicacion, IValidable
     {
-        public bool Oferta {get;set;}
+        public bool Oferta { get; set; }
         public Venta()
         {
 
@@ -26,15 +26,17 @@ namespace Dominio.Entidades
             decimal preciofinal = base.ObtenerPrecio();
             return preciofinal;
         }
-        public override void Finalizar(Cliente cliente)
+        public override void Finalizar(Usuario usuario)
         {
+            Cliente cliente = (Cliente)usuario;
             if (EstadoPublicacion == Estado.CERRADA || EstadoPublicacion == Estado.CANCELADA) throw new Exception("No se puede comprar una publicacion Finalizada o Cancelada");
             if (cliente.SaldoBilletera <= ObtenerPrecio()) throw new Exception("Saldo insuficiente para realizar la compra");
+            EstadoPublicacion = Estado.CERRADA;
+            FechaFinalizado = DateTime.Now;
+            cliente.SaldoBilletera -= ObtenerPrecio();
             UsuarioComprador = cliente;
-			EstadoPublicacion = Estado.CERRADA;
-			FechaFinalizado = DateTime.Now;
-			cliente.SaldoBilletera -= ObtenerPrecio();
-		}
+            UsuarioFinalizador = cliente;
+        }
         public override void Validar()
         {
             base.Validar();
@@ -43,6 +45,6 @@ namespace Dominio.Entidades
         {
 
         }
-        
+
     }
 }
