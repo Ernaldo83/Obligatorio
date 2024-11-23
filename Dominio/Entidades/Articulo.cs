@@ -30,7 +30,5 @@ namespace Dominio.Entidades
             if (UnaCategoria == null) throw new Exception("La categoria no puede ser nula");
             if (Precio <= 0) throw new Exception("El precio no puede ser cero o negativo");
         }
-
-       
     }
 }

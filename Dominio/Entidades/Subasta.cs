@@ -5,7 +5,6 @@ namespace Dominio.Entidades
 	public class Subasta : Publicacion, IValidable
 	{
 		private List<Oferta> _ofertas = new List<Oferta>();
-	//	private List<Oferta> _ofertasFinalizadas = new List<Oferta>();
 
 		public Subasta(string nombre,
 				Estado estado,
@@ -22,7 +21,7 @@ namespace Dominio.Entidades
 			return base.Articulos();
 		}
 
-		public List<Oferta> MostrarOfertas()
+		public IEnumerable<Oferta> MostrarOfertas()
 		{
 			return _ofertas;
 		}
@@ -34,7 +33,7 @@ namespace Dominio.Entidades
 			}
 			return base.ObtenerPrecio();
 		}
-		public void CargarOferta(Cliente cliente, int valorOferta)
+		public override void CargarOferta(Cliente cliente, int valorOferta)
 		{
             if (cliente == null) throw new Exception("Parametro incorrecto para crear una oferta");
             if (EstadoPublicacion == Estado.CERRADA || EstadoPublicacion == Estado.CANCELADA) throw new Exception("No se puede ofertar en una publicacion Finalizada o Cancelada");

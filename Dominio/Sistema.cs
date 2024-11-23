@@ -368,7 +368,7 @@ namespace Dominio
             }
             throw new Exception("La publicación no es válida.");
         }
-        public List<Usuario> MostrarUsuarios(bool admin)
+        public IEnumerable<Usuario> MostrarUsuarios(bool admin)
         {
             List<Usuario> unaLista = new List<Usuario>();
 
@@ -385,7 +385,7 @@ namespace Dominio
             }
             return unaLista;
         }
-        public List<Categoria> MostrarCategorias()
+        public IEnumerable<Categoria> MostrarCategorias()
         {
             return _categorias;
         }
@@ -433,7 +433,7 @@ namespace Dominio
             publicaciones.Sort();
             return publicaciones;
         }
-        public List<Publicacion> BuscarPublicacionEntreFecha(DateTime fecha1, DateTime fecha2)
+        public IEnumerable<Publicacion> BuscarPublicacionEntreFecha(DateTime fecha1, DateTime fecha2)
         {
             DateTime fechaMayor = fecha1;
             if (fecha1 > fecha2)
@@ -451,7 +451,7 @@ namespace Dominio
             }
             return publicaciones;
         }
-        public List<Articulo> MostrarArticulos(string categoria)
+        public IEnumerable<Articulo> MostrarArticulos(string categoria)
         {
             List<Articulo> resultado = new List<Articulo>();
             if (categoria.ToUpper() == "TODOS")
@@ -502,12 +502,12 @@ namespace Dominio
             if (BuscarAdministrador(nuevoUsuario.Email) != null) throw new Exception("El usuario ya existe");
             _usuarios.Add(nuevoUsuario);
         }
+
         public void FinalizarSubasta(Subasta subasta)
         {
             if (subasta == null) throw new Exception("Sin el objeto subtasta para finalizar");
             subasta.Finalizar(new Cliente());
         }
-
         public Venta BuscarVenta(int id)
         {
 
@@ -517,7 +517,6 @@ namespace Dominio
             }
             throw new Exception("No existe publicaciòn.");
         }
-
         public void FinalizarVenta(Venta venta, Cliente cliente)
         {
             if (venta == null) throw new Exception("Sin el objeto Venta para finalizar");

@@ -15,7 +15,6 @@ namespace Dominio.Entidades
         public Usuario()
         {
             Id = _ultimoId++;
-            //constructor vacio para que los hijos puedan tener constructor vacio.
         }
 
         public Usuario(string nombre,

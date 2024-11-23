@@ -93,7 +93,7 @@ namespace Dominio.Entidades
                 if (unArticulo == null) throw new Exception("Articulo mal ingresado");
             }
         }
-
+        public abstract void CargarOferta(Cliente cliente, int valorOferta);
         public int CompareTo(Publicacion? other)
         {
             if (other == null) throw new Exception("other");

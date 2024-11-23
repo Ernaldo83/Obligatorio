@@ -38,5 +38,10 @@ namespace Dominio.Entidades
         {
             base.Validar();
         }
+        public override void CargarOferta(Cliente cliente, int valorOferta)
+        {
+
+        }
+        
     }
 }
