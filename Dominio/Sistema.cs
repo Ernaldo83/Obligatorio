@@ -320,7 +320,7 @@ namespace Dominio
         public Usuario Login(string mail, string password)
         {
             if (String.IsNullOrEmpty(mail)) throw new Exception("No se ha ingresado el email");
-            if (String.IsNullOrEmpty(password)) throw new Exception("No se a ingresado el password");
+            if (String.IsNullOrEmpty(password)) throw new Exception("No se ha ingresado el password");
             foreach (Usuario item in _usuarios)
             {
                 if (item.Email == mail && item.Password == password)
